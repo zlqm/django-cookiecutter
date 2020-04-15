@@ -1,0 +1,4 @@
+Django==2.2
+django-log-request-id==1.4.1
+p_config==1.0
+PyYAML==5.3.1

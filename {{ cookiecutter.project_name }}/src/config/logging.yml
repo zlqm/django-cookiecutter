@@ -1,0 +1,41 @@
+version: 1
+disable_existing_loggers: false
+formatters:
+  verbose:
+    format: '[{asctime}] [{request_id}] [{name}] [{process:d}] [{thread:d}] [{levelname}] {message}'
+    style: '{'
+  simple:
+    format: '{levelname} {message}'
+    style: '{'
+filters:
+  require_debug_true:
+    '()': django.utils.log.RequireDebugTrue
+  request_id:
+    '()': log_request_id.filters.RequestIDFilter
+handlers:
+  console:
+    level: INFO
+    filters:
+      - request_id
+      - require_debug_true
+    class: logging.StreamHandler
+    formatter: simple
+  file:
+    level: INFO
+    class: logging.handlers.TimedRotatingFileHandler
+    filters:
+      - request_id
+    formatter: verbose
+    filename: ../logs/running.log
+    when: D 
+    interval: 1
+loggers:
+  django:
+    handlers:
+      - console
+    propgate: false
+  apps:
+    handlers:
+      - file
+    propgate: true
+    level: INFO

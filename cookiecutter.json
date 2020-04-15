@@ -1,0 +1,6 @@
+{
+    "project_name": "AwesomeWebApp",
+    "docker_image_name": "awesome-web-app",
+    "secret_key": "{{ random_ascii_string(48, punctuation=True) }}",
+    "_extensions": ["cookiecutter.extensions.RandomStringExtension"]
+}

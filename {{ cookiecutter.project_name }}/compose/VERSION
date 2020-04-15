@@ -1,0 +1,2 @@
+DOCKER_IMAGE={{ cookiecutter.docker_image_name }}
+DOCKER_IMAGE_VERSION=1.0
